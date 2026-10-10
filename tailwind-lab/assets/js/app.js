@@ -91,6 +91,26 @@
     var back = R.el('a', 'side-back', '← LightHouse 目录');
     back.href = /\/tools\/[^/]*$/.test(location.pathname) ? '../../index.html' : '../index.html';
     box.appendChild(back);
+    var themeBtn = R.el('button', 'side-theme');
+    themeBtn.setAttribute('type', 'button');
+    themeBtn.setAttribute('aria-label', '切换深色 / 浅色模式');
+    themeBtn.title = '切换深色 / 浅色模式';
+    function updateThemeBtn() {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeBtn.innerHTML = dark
+        ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>'
+        : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>';
+    }
+    themeBtn.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme');
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('lighthouse.theme', next); } catch (e) {}
+      updateThemeBtn();
+    });
+    updateThemeBtn();
+    box.appendChild(themeBtn);
+
     /* 窄屏顶栏放不下「重置进度」，这个按钮只在窄屏的抽屉底部显示（顶栏那个在宽屏用） */
     var resetDrawer = R.el('button', 'btn btn-sm side-reset', '重置进度');
     resetDrawer.setAttribute('data-reset', 'drawer');
@@ -504,6 +524,10 @@
 
   /* ---------- 启动 ---------- */
   function boot() {
+  var savedTheme = 'light';
+  try { savedTheme = localStorage.getItem('lighthouse.theme') || 'light'; } catch (e) {}
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
     keepAlive();
     buildSidebar();
     initNavDrawer();

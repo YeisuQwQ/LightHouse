@@ -1,39 +1,39 @@
-/* portal.css — 入口页样式。色值与字体以 DESIGN.md 为唯一来源。
- *
- * 纸色、墨色、线色、字体、圆角与各座训练场一致（它们各自有自己的 base.css）；
- * 入口页自己的强调色是灯塔金，每座站的颜色只出现在对应卡片上。
- */
 :root {
-  /* 纸与墨（与各座训练场同值） */
-  --ink: #232019;
-  --ink-soft: #4a453a;
-  --muted: #6b6558;
-  --paper: #f0eee6;
-  --panel: #faf9f5;
-  --line: #e0dbcc;
-
-  /* 入口页自己的强调色：灯塔金 */
-  --accent: #c08a2e;          /* 装饰：品牌竖条、进度条填充、hover 描边 */
-  --accent-strong: #8a5a00;   /* 承载文字：按钮实底、小字、链接 */
-
-  /* 各座训练场的识别色（装饰用）与承载文字用的深支，取自各自 base.css；
-     新增一座站时在这里加两条变量，并在 DESIGN.md 的 colors 里同步 */
+  --on-surface: #232019;
+  --on-surface-variant: #4a453a;
+  --secondary: #6b6558;
+  --surface: #faf9f5;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f6f4ec;
+  --surface-container: #f0eee6;
+  --surface-container-high: #e8e5da;
+  --surface-container-highest: #e0dbcc;
+  --outline: #e0dbcc;
+  --outline-variant: #cec7b4;
+  --accent: #c08a2e;
+  --accent-strong: #8a5a00;
+  --accent-container: rgba(192,138,46,0.12);
   --lab-html5: #d25319;  --lab-html5-strong: #b04a16;
   --lab-css: #2965f1;    --lab-css-strong: #2456c8;
   --lab-js: #c15f3c;     --lab-js-strong: #b4522f;
   --lab-ts: #3178c6;     --lab-ts-strong: #2563a8;
-  /* Vue 的品牌绿在纸白上只有 2.15:1，只做装饰；承载文字用深支 #35785f（4.52:1） */
   --lab-vue: #42b883;    --lab-vue-strong: #35785f;
-  /* React 的品牌青在纸白上只有 3.99:1，只做装饰；承载文字用深支 #046e8f（4.98:1） */
   --lab-react: #087ea4;  --lab-react-strong: #046e8f;
-  /* Tailwind 的品牌天蓝 #38bdf8 在纸白上只有 2.03:1，只做装饰；深支用 #0369a1（5.11:1）*/
   --lab-tailwind: #38bdf8; --lab-tailwind-strong: #0369a1;
-
-  --serif: "Source Han Serif SC", "Noto Serif SC", "Times New Roman", Times, serif;
-  --sans: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
-
-  --r-sm: 4px;
-  --r-lg: 14px;
+  --serif: "Noto Serif SC","Times New Roman",Times,serif;
+  --sans: "Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 28px;
+  --r-full: 9999px;
+  --elev-1: 0 1px 3px 1px rgba(35,32,25,0.05),0 1px 2px 0 rgba(35,32,25,0.08);
+  --elev-2: 0 2px 6px 2px rgba(35,32,25,0.06),0 1px 2px 0 rgba(35,32,25,0.08);
+  --elev-3: 0 4px 8px 3px rgba(35,32,25,0.08),0 1px 3px 0 rgba(35,32,25,0.06);
+  --state-hover: rgba(35,32,25,0.08);
+  --state-focus: rgba(35,32,25,0.12);
+  --ease-standard: cubic-bezier(0.2,0,0,1);
+  --ease-emphasized: cubic-bezier(0.3,0,0,1);
   --page-max: 1080px;
 }
 
@@ -41,30 +41,29 @@
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--surface-container);
+  color: var(--on-surface);
   font-family: var(--sans);
   font-size: 0.95rem;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--accent-strong); text-decoration: none; }
+a { color: var(--accent-strong); text-decoration: none; transition: color 150ms var(--ease-standard); }
 a:hover { text-decoration: underline; }
 
-::selection { background: rgba(192, 138, 46, 0.24); }
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+::selection { background: rgba(192,138,46,0.24); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: var(--r-sm); }
 
-* { scrollbar-width: thin; scrollbar-color: #cec7b4 transparent; }
+* { scrollbar-width: thin; scrollbar-color: var(--outline-variant) transparent; }
 *::-webkit-scrollbar { width: 10px; height: 10px; }
-*::-webkit-scrollbar-thumb { background: #cec7b4; border-radius: 6px; border: 3px solid transparent; background-clip: content-box; }
+*::-webkit-scrollbar-thumb { background: var(--outline-variant); border-radius: var(--r-full); border: 3px solid transparent; background-clip: content-box; }
 
-.page { max-width: var(--page-max); margin: 0 auto; padding: 72px 24px 64px; }
+.page { max-width: var(--page-max); margin: 0 auto; padding: 80px 24px 72px; }
 
-/* ---------- 标题区 ---------- */
-.hero { margin: 0 0 48px; }
+.hero { margin: 0 0 56px; }
 .hero h1 {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   font-family: var(--serif);
   font-size: 3.5rem;
   font-weight: 600;
@@ -77,99 +76,156 @@ a:hover { text-decoration: underline; }
   width: 6px;
   height: 0.78em;
   margin-right: 18px;
-  border-radius: 3px;
+  border-radius: var(--r-full);
   background: var(--accent);
   vertical-align: -0.02em;
 }
 .hero .sub {
-  margin: 0 0 18px;
-  color: var(--muted);
+  margin: 0 0 20px;
+  color: var(--secondary);
   font-size: 0.9rem;
   letter-spacing: 0.01em;
 }
 .hero .intro {
   margin: 0;
-  color: var(--ink-soft);
-  /* 断行交给浏览器的中文规则（默认 word-break: normal）：中文允许在任意两字之间断行，
-     只在标点处断会让一句话被提前截断。早先这里是 word-break: keep-all，全宽下
-     简介在「编程贬值」后面空掉四成再换行、末尾多出一行孤字。 */
+  color: var(--on-surface-variant);
   overflow-wrap: anywhere;
 }
 
-/* ---------- 卡片 ---------- */
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 @media (max-width: 880px) { .cards { grid-template-columns: minmax(0, 1fr); } }
 
 .card {
   display: flex;
   flex-direction: column;
-  background: var(--panel);
-  border: 1px solid var(--line);
+  background: var(--surface);
+  border: 1px solid var(--outline);
   border-top: 3px solid var(--card-accent);
   border-radius: var(--r-lg);
-  padding: 18px 20px 16px;
+  padding: 20px 22px 18px;
+  box-shadow: var(--elev-1);
+  transition: box-shadow 250ms var(--ease-standard), border-color 250ms var(--ease-standard);
+}
+.card:hover {
+  box-shadow: var(--elev-2);
 }
 .card-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .card-title { margin: 0; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; line-height: 1.4; }
-.card-title a { color: var(--ink); }
+.card-title a { color: var(--on-surface); }
 .card-title a:hover { color: var(--card-accent-strong); text-decoration: none; }
-.card-stats { margin-left: auto; color: var(--muted); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
-.card-blurb { margin: 6px 0 8px; color: var(--ink-soft); font-size: 0.9rem; }
-.card-note { margin: 0 0 8px; color: var(--muted); font-size: 0.82rem; }
+.card-stats { margin-left: auto; color: var(--secondary); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.card-blurb { margin: 8px 0 10px; color: var(--on-surface-variant); font-size: 0.9rem; }
+.card-note { margin: 0 0 8px; color: var(--secondary); font-size: 0.82rem; }
 
 .card-area { margin-top: auto; }
 
-.progress-line { display: flex; align-items: baseline; gap: 8px; color: var(--muted); font-size: 0.82rem; }
-.progress-line b { color: var(--ink); font-variant-numeric: tabular-nums; }
-.track { height: 5px; margin: 8px 0 14px; border-radius: 3px; background: var(--line); overflow: hidden; }
-.track > span { display: block; height: 100%; width: 0; background: var(--card-accent); }
+.progress-line { display: flex; align-items: baseline; gap: 8px; color: var(--secondary); font-size: 0.82rem; }
+.progress-line b { color: var(--on-surface); font-variant-numeric: tabular-nums; }
+.track { height: 6px; margin: 10px 0 16px; border-radius: var(--r-full); background: var(--surface-container-highest); overflow: hidden; }
+.track > span { display: block; height: 100%; width: 0; background: var(--card-accent); border-radius: var(--r-full); transition: width 400ms var(--ease-emphasized); }
 
 .card-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.86rem;
-  padding: 5px 13px;
-  border-radius: var(--r-sm);
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: var(--r-full);
   border: 1px solid transparent;
   cursor: pointer;
+  line-height: 1.5;
+  transition: background-color 150ms var(--ease-standard), box-shadow 150ms var(--ease-standard), color 150ms var(--ease-standard);
+  position: relative;
+  overflow: hidden;
 }
-.btn-enter { background: var(--card-accent-strong); color: var(--panel); }
-.btn-enter:hover { background: var(--ink); color: var(--panel); text-decoration: none; }
-.btn-ghost { background: var(--panel); color: var(--card-accent-strong); border-color: var(--line); }
-.btn-ghost:hover { border-color: var(--card-accent); text-decoration: none; }
-.card-note { margin: 12px 0 0; color: var(--muted); font-size: 0.82rem; }
+.btn-enter { background: var(--card-accent-strong); color: var(--surface); }
+.btn-enter:hover { background: var(--on-surface); color: var(--surface); text-decoration: none; box-shadow: var(--elev-1); }
+.btn-ghost { background: transparent; color: var(--card-accent-strong); border-color: var(--outline); }
+.btn-ghost:hover { background: var(--state-hover); border-color: var(--card-accent); text-decoration: none; }
+.card-note { margin: 12px 0 0; color: var(--secondary); font-size: 0.82rem; }
 
-/* ---------- 页脚与无脚本回退 ---------- */
-.foot { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; }
+.side-theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--outline);
+  border-radius: var(--r-full);
+  background: var(--surface);
+  color: var(--secondary);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease-standard), color 150ms var(--ease-standard);
+}
+.side-theme:hover { background: var(--state-hover); color: var(--accent-strong); }
+.side-theme svg { width: 20px; height: 20px; display: block; }
+
+.foot { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--outline); color: var(--secondary); font-size: 0.82rem; }
 .foot p { margin: 0; }
 .foot .credit { display: flex; align-items: center; gap: 10px; }
-/* GitHub 图标链接：与版权同行，只一个图标，悬停换承载文字色 */
-.gh-link { display: inline-flex; align-items: center; color: var(--muted); }
+.gh-link { display: inline-flex; align-items: center; color: var(--secondary); transition: color 150ms var(--ease-standard); }
 .gh-link:hover { color: var(--accent-strong); text-decoration: none; }
 .gh-link svg { width: 16px; height: 16px; fill: currentColor; display: block; }
-.noscript-note { color: var(--muted); font-size: 0.9rem; }
+.noscript-note { color: var(--secondary); font-size: 0.9rem; }
 
-/* 缓存提示条：与各训练场同款，只在检测到旧页面时出现一次 */
 .stale-banner {
   display: flex;
   gap: 12px;
   align-items: baseline;
-  padding: 9px 16px;
+  padding: 12px 20px;
   background: var(--accent-strong);
-  color: var(--panel);
+  color: var(--surface);
   font-size: 0.82rem;
+  border-radius: 0;
 }
-.stale-banner kbd { background: rgba(255, 255, 255, 0.18); border-radius: 3px; padding: 0 4px; }
+.stale-banner kbd { background: rgba(255,255,255,0.18); border-radius: var(--r-sm); padding: 0 4px; }
 
-/* ---------- 窄屏（手机竖屏）：留白收一收，按钮够手指点 ---------- */
 @media (max-width: 560px) {
-  .page { padding: 44px 18px 48px; }
-  .hero { margin-bottom: 32px; }
+  .page { padding: 48px 18px 52px; }
+  .hero { margin-bottom: 36px; }
   .hero h1 { font-size: 2.4rem; }
   .hero h1::before { margin-right: 12px; width: 5px; }
   .cards { gap: 16px; }
-  .card { padding: 16px 16px 14px; }
+  .card { padding: 18px 18px 16px; }
   .card-actions { gap: 8px; }
-  /* iOS 的可点面积下限是 44px，入口页这两个按钮至少要过 36px */
-  .btn { padding: 8px 14px; }
+  .btn { padding: 10px 16px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --on-surface: #e8e4d8;
+    --on-surface-variant: #c8c2b0;
+    --secondary: #9a9382;
+    --surface: #252220;
+    --surface-container-lowest: #1a1814;
+    --surface-container-low: #1f1d1a;
+    --surface-container: #1a1814;
+    --surface-container-high: #2a2622;
+    --surface-container-highest: #3a3530;
+    --outline: #3a3530;
+    --outline-variant: #4a4540;
+    --accent: #e8a546;
+    --accent-strong: #f0c060;
+    --state-hover: rgba(255,255,255,0.08);
+    --state-focus: rgba(255,255,255,0.12);
+  }
+}
+
+:root[data-theme="dark"] {
+  --on-surface: #e8e4d8;
+  --on-surface-variant: #c8c2b0;
+  --secondary: #9a9382;
+  --surface: #252220;
+  --surface-container-lowest: #1a1814;
+  --surface-container-low: #1f1d1a;
+  --surface-container: #1a1814;
+  --surface-container-high: #2a2622;
+  --surface-container-highest: #3a3530;
+  --outline: #3a3530;
+  --outline-variant: #4a4540;
+  --accent: #e8a546;
+  --accent-strong: #f0c060;
+  --state-hover: rgba(255,255,255,0.08);
+  --state-focus: rgba(255,255,255,0.12);
 }
