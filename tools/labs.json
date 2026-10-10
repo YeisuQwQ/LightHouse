@@ -1,0 +1,79 @@
+[
+  {
+    "key": "html5",
+    "dir": "html5-lab",
+    "title": "HTML5 训练场",
+    "registry": "H5LAB_CHAPTERS",
+    "accentToken": "lab-html5",
+    "entry": "html5-lab/index.html",
+    "progressKey": "h5lab.v1.passed",
+    "blurb": "语义标签、文本与表格、链接与媒体、表单校验、Canvas / SVG",
+    "note": ""
+  },
+  {
+    "key": "css",
+    "dir": "css-lab",
+    "title": "CSS 训练场",
+    "registry": "CSSLAB_CHAPTERS",
+    "accentToken": "lab-css",
+    "entry": "css-lab/index.html",
+    "progressKey": "csslab.v1.passed",
+    "blurb": "选择器命中、层叠与优先级、盒模型、flex 与 grid、变量与响应式",
+    "note": ""
+  },
+  {
+    "key": "js",
+    "dir": "js-lab",
+    "title": "JS 训练场",
+    "registry": "JSLAB_CHAPTERS",
+    "accentToken": "lab-js",
+    "entry": "js-lab/index.html",
+    "progressKey": "jslab.v1.passed",
+    "blurb": "值、函数、数组对象、闭包与类、异步、DOM",
+    "note": ""
+  },
+  {
+    "key": "ts",
+    "dir": "ts-lab",
+    "title": "TypeScript 训练场",
+    "registry": "TSLAB_CHAPTERS",
+    "accentToken": "lab-ts",
+    "entry": "ts-lab/index.html",
+    "progressKey": "tslab.v1.passed",
+    "blurb": "类型注解与推断、收窄、泛型、工具类型、strict 报错",
+    "note": "首次打开要加载约 12 MB 的类型检查器，只需一次。"
+  },
+  {
+    "key": "vue",
+    "dir": "vue-lab",
+    "title": "Vue 3 训练场",
+    "registry": "VUELAB_CHAPTERS",
+    "accentToken": "lab-vue",
+    "entry": "vue-lab/index.html",
+    "progressKey": "vuelab.v1.passed",
+    "blurb": "单文件组件、响应式、条件与循环、表单、组件通信、组合式函数",
+    "note": "首次打开要加载约 1 MB 的 Vue 与单文件组件编译器，只需一次。"
+  },
+  {
+    "key": "react",
+    "dir": "react-lab",
+    "title": "React 19 训练场",
+    "registry": "RLLAB_CHAPTERS",
+    "accentToken": "lab-react",
+    "entry": "react-lab/index.html",
+    "progressKey": "rllab.v1.passed",
+    "blurb": "函数组件、props、列表与 key、state 与事件、受控表单、副作用、状态提升、ref、useReducer、context",
+    "note": "首次打开要加载约 220 KB 的 React 运行库，只需一次。"
+  },
+  {
+    "key": "tailwind",
+    "dir": "tailwind-lab",
+    "title": "Tailwind 训练场",
+    "registry": "TWLAB_CHAPTERS",
+    "accentToken": "lab-tailwind",
+    "entry": "tailwind-lab/index.html",
+    "progressKey": "twlab.v1.passed",
+    "blurb": "工具类、间距与尺寸、字体颜色、flex 与 grid、变体、响应式、暗色模式与设计令牌",
+    "note": "每个预览窗都要跑一次约 290 KB 的 Tailwind 浏览器编译器，单帧约 100–300 ms。"
+  }
+]

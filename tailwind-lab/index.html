@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tailwind 训练场 — 从工具类到设计令牌</title>
+<link rel="stylesheet" href="assets/css/base.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="nav-btn" id="nav-btn" type="button" aria-expanded="false" aria-controls="sidebar">目录</button>
+  <a class="brand" href="#home">Tailwind 训练场</a>
+  <nav class="topnav">
+    <a href="#home" data-route="home">总览</a>
+    <a href="#playground" data-route="playground">练习场</a>
+  </nav>
+  <div class="topbar-right">
+    <label class="switch" title="停止输入后自动渲染并检验">
+      <input type="checkbox" id="auto-run" checked> 自动运行
+    </label>
+    <div class="progress-mini" title="总进度">
+      <div class="progress-mini-track"><div class="progress-mini-fill" id="progress-fill"></div></div>
+      <span id="progress-text">0/0</span>
+    </div>
+    <button class="btn btn-ghost btn-sm" id="reset-progress">重置进度</button>
+  </div>
+</header>
+
+<div class="nav-backdrop" id="nav-backdrop"></div>
+<div class="shell">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="main" id="main"></main>
+</div>
+
+<!-- Tailwind 浏览器编译器的源码字符串包（vendor/，自动生成）。
+     classic script 挂出 window.TWLAB_TAILWIND_SRC，preview.js 把它内联进预览 iframe 求值：
+     沙箱是 opaque origin，外链 <script src> 一律 onerror，file:// 下父页面又读不到源码。 -->
+<script src="vendor/tailwind-src.js"></script>
+<script src="assets/js/harness.js"></script>
+<script src="assets/js/preview.js"></script>
+<script src="assets/js/highlight.js"></script>
+<script src="assets/js/pair.js"></script>
+<script src="assets/js/render.js"></script>
+<script src="content/ch01-utilities.js"></script>
+<script src="content/ch02-spacing-size.js"></script>
+<script src="content/ch03-typography-color.js"></script>
+<script src="content/ch04-layout.js"></script>
+<script src="content/ch05-components.js"></script>
+<script src="content/ch06-variants.js"></script>
+<script src="content/ch07-responsive.js"></script>
+<script src="content/ch08-dark-tokens.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
